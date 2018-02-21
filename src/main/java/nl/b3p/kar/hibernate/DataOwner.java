@@ -30,6 +30,7 @@ import org.stripesstuff.stripersist.Stripersist;
  * @author Matthijs Laan
  */
 @Entity
+@Table(name = "data_owner")
 public class DataOwner extends XmlAdapter<String, DataOwner> implements Comparable {
 
     /**
@@ -55,6 +56,7 @@ public class DataOwner extends XmlAdapter<String, DataOwner> implements Comparab
     
     private String code;
     
+    @Column(name = "company_number")
     private Integer companyNumber;
     
     private String omschrijving;

@@ -49,7 +49,6 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-import org.hibernatespatial.GeometryUserType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.stripesstuff.stripersist.EntityTypeConverter;
@@ -161,10 +160,10 @@ public class DeelgebiedActionBean implements ActionBean{
         //Point  p = new Point(new Coordinate(x,y), new PrecisionModel(), SRID);
         String q = "from Gemeente where intersects(geom, ?) = true";
         
-            Type geometryType = GeometryUserType.TYPE;
+         //   Type geometryType = GeometryUserType.TYPE;
         EntityManager em = Stripersist.getEntityManager();
         Session s = (Session)em.getDelegate();
-        Query query = s.createQuery(q).setParameter(0, p,geometryType);
+        Query query = s.createQuery(q).setParameter(0, p);
         List<Gemeente> res = query.list();
         JSONArray ar = new JSONArray();
         for (Gemeente g : res) {

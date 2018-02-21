@@ -16,7 +16,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <geotools.version>18.0</geotools.version>
-        <hibernate.version>3.6.10.Final</hibernate.version>
+        <hibernate.version>5.2.13.Final</hibernate.version>
         <postgresql.version>42.1.4</postgresql.version>
         <postgresql.postgis-jdbc.version>2.2.1</postgresql.postgis-jdbc.version>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -130,7 +130,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>org.hibernatespatial</groupId>
             <artifactId>hibernate-spatial</artifactId>
             <version>1.1</version>
@@ -147,9 +147,6 @@
             <version>1.1</version>
             <exclusions>
                 <exclusion>
-                    <!--
-                    when upgrading hibernate this should be removed
-                    -->
                     <groupId>javassist</groupId>
                     <artifactId>javassist</artifactId>
                 </exclusion>
@@ -161,20 +158,16 @@
             <version>${hibernate.version}</version>
             <exclusions>
                 <exclusion>
-                    <!--
-                    when upgrading hibernate this should be removed
-                    -->
                     <groupId>javassist</groupId>
                     <artifactId>javassist</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-            <!-- override the version provided by hibernate -->
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.22.0-CR2</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>

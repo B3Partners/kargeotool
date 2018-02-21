@@ -48,7 +48,7 @@ public class Gemeente {
     private String code;
     
     @Basic(optional=false)
-    @org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
+    //@org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
     private MultiPolygon geom;
     
 

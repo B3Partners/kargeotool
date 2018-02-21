@@ -28,13 +28,16 @@ import javax.persistence.*;
  * @author Chris
  */
 @Entity
+@Table(name = "gebruiker_data_owner_rights")
 public class GebruikerDataOwnerRights implements Serializable {
     @Id
     @ManyToOne
+    @JoinColumn(name = "gebruiker")
     private Gebruiker gebruiker;
     
     @Id
     @ManyToOne
+    @JoinColumn(name = "data_owner")
     private DataOwner dataOwner;
     
     private boolean editable;

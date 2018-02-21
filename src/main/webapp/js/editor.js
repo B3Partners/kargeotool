@@ -522,7 +522,6 @@ Ext.define("Editor", {
             };
             
             mixedMovements(endPointCheck);
-            
         }
     },
 

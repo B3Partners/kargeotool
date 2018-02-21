@@ -57,7 +57,6 @@ import org.apache.log4j.LogManager;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-import org.hibernatespatial.GeometryUserType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -301,8 +300,8 @@ public class EditorActionBean implements ActionBean {
 
             Query q = session.createQuery("from Road where intersects(geometry, ?) = true");
             q.setMaxResults(100);
-            Type geometryType = GeometryUserType.TYPE;
-            q.setParameter(0, buffer, geometryType);
+        //    Type geometryType = GeometryUserType.TYPE;
+            q.setParameter(0, buffer);
             List<Road> roads = (List<Road>)q.list();
 
             JSONArray rs = new JSONArray();
@@ -340,7 +339,7 @@ public class EditorActionBean implements ActionBean {
                         "from ActivationPoint "
                       + "where intersects(location, :pos) = true "
                       + "and roadsideEquipment <> :this")
-                        .setParameter("pos", p, GeometryUserType.TYPE)
+                        .setParameter("pos", p)
                         .setParameter("this", rseq)
                         .list();
             } else if(dos.isEmpty()) {
@@ -351,7 +350,7 @@ public class EditorActionBean implements ActionBean {
                       + "where roadsideEquipment.dataOwner in (:dos) "
                       + "and intersects(location, :pos) = true and roadsideEquipment <> :this")
                         .setParameterList("dos", dos)
-                        .setParameter("pos", p, GeometryUserType.TYPE)
+                        .setParameter("pos", p)
                         .setParameter("this", rseq)
                         .list();
 

@@ -46,7 +46,7 @@ public class Deelgebied {
     private String name;
     
     @Basic(optional=false)
-    @org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
+    //@org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
     private GeometryCollection geom;
     
     

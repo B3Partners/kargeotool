@@ -117,7 +117,7 @@ public class RoadsideEquipment implements Comparable<RoadsideEquipment> {
     @XmlJavaTypeAdapter(DataOwner.class)
     private DataOwner dataOwner;
 
-    @org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
+    //@org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
     @XmlTransient
     private Point location;
 

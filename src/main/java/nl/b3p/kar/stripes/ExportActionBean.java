@@ -72,7 +72,6 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-import org.hibernatespatial.GeometryUserType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -550,8 +549,7 @@ public class ExportActionBean implements ActionBean, ValidationErrorHandler {
                 query += " and readyForExport = true";
             }
             Query q = sess.createQuery(query);
-            Type geometryType = GeometryUserType.TYPE;
-            q.setParameter(0, deelgebiedPoly, geometryType);
+            q.setParameter(0, deelgebiedPoly);
             List<RoadsideEquipment> rseqList = (List<RoadsideEquipment>) q.list();
 
             JSONArray rseqArray = makeRseqArray(rseqList);

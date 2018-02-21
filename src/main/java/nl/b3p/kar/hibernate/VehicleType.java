@@ -29,6 +29,7 @@ import javax.persistence.*;
  * @author Matthijs Laan
  */
 @Entity
+@Table(name = "vehicle_type")
 public class VehicleType implements Comparable<VehicleType>, Serializable{
 
     public VehicleType(int nummer, String omschrijving, String groep) {

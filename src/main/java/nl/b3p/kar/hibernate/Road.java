@@ -42,7 +42,7 @@ public class Road {
     private int oneway;
     private String ref;
     private int z_order;
-    @org.hibernate.annotations.Type(type = "org.hibernatespatial.GeometryUserType")
+   // @org.hibernate.annotations.Type(type = "org.hibernatespatial.GeometryUserType")
     private LineString geometry;
 
     public Long getId() {
