@@ -71,6 +71,7 @@ public class KarAttributes {
      */
     @Basic(optional=false)
     @XmlElement(name="karservicetype")
+    @Column(name="service_type")
     private String serviceType;
     
     /**
@@ -79,6 +80,7 @@ public class KarAttributes {
      */
     @Basic(optional=false)
     @XmlElement(name="karcommandtype")
+    @Column(name="command_type")
     private Integer commandType;
     
     public static class KarAttributesTypeAdapter extends XmlAdapter<String, Integer> {
@@ -114,6 +116,7 @@ public class KarAttributes {
      */    
     @Basic(optional=false)
     @XmlTransient
+    @Column(name="used_attributes_mask")
     private Integer usedAttributesMask;
     
     public void beforeMarshal(Marshaller marshaller) throws Exception {
