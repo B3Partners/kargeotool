@@ -1,4 +1,4 @@
-/* global editor, Ext, karTheme, contextPath */
+/* global editor, Ext, karTheme, contextPath, isBeheerder */
 
 /**
  * KAR Geo Tool - applicatie voor het registreren van KAR meldpunten
@@ -245,6 +245,12 @@ Ext.define("ContextMenu", {
                 iconCls : 'overviewTree'
             },
             {
+                id: "informCarrier",
+                text: "Informeer vervoerder",
+                icon: contextPath + "/images/silk/email_go.png",
+                iconCls : 'overviewTree'
+            },
+            {
                 id: "showMessages",
                 text: "Export informatie",
                 icon: contextPath + "/images/silk/email_open.png",
@@ -329,6 +335,9 @@ Ext.define("ContextMenu", {
                             break;
                         case 'showMessages':
                             Ext.create("MessagesOverview").show(this.editor.selectedObject.id);
+                            break;
+                        case 'informCarrier':
+                            this.editor.showCarriers();
                             break;
                     }
                 },

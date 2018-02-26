@@ -573,6 +573,7 @@ public class RoadsideEquipment implements Comparable<RoadsideEquipment> {
         p.put("crossingCode", crossingCode);
         p.put("description", description);
         p.put("karAddress", karAddress);
+        p.put("readyForExport", readyForExport);
         p.put("town", town);
         p.put("type", type);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

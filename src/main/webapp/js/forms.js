@@ -483,6 +483,45 @@ Ext.define("EditForms", {
         if(apType === "1"){
             label += " (Signaalgroep " + oldSignalGroupNumber + ")";
         }
+        
+        var triggerTypes = null;
+        var triggerType = map.config.triggerType;
+        if (this.editor.getCurrentVehicleType() === "OV") {
+            triggerTypes = [
+                {value: 'STANDARD', desc: 'Standaard: door vervoerder bepaald'},
+                {value: 'FORCED', desc: 'Automatisch: altijd melding'},
+                {value: 'MANUAL', desc: 'Handmatig: handmatig door chauffeur'}
+            ];
+        }else{
+            if(Ext.Array.contains(["MANUAL", "STANDARD", "FORCED"],triggerType)){
+                switch(triggerType){
+                    case "STANDARD":
+                        triggerType = "0";
+                        break;
+                    case "FORCED":
+                        triggerType = "1";
+                        break;
+                    case "MANUAL":
+                        triggerType = "2";
+                        break;
+                }
+            }
+            triggerTypes = [
+                {value: '0', desc: 'Automatisch: zwaailicht aan'},
+                {value: '1', desc: 'Automatisch: altijd melding'},
+                {value: '2', desc:'Handmatig: handmatig door chauffeur'},
+                {value: '3', desc:'Handmatig: linksaf'},
+                {value: '4', desc:'Handmatig: rechtdoor'},
+                {value: '5', desc:'Handmatig: rechtsaf'},
+                {value: '6', desc:'Automatisch: smeerpunten tram'},
+                {value: '7', desc:'Handmatig: kazernepunt'},
+                {value: '8', desc:'Type = 8'},
+                {value: '9', desc:'Type = 9'},
+                {value: '10', desc:'Type = 10'},
+                {value: '11', desc:'Type = 11'}
+            ];
+        }
+        
         var ov = [];
         var hulpdienst = [];
         var children = [];
@@ -590,14 +629,10 @@ Ext.define("EditForms", {
             hidden:!edittingInmeldpunt,
             displayField: 'desc',
             valueField: 'value',
-            value: map.config.triggerType,
+            value: triggerType,
             store: Ext.create('Ext.data.Store', {
                 fields: ['value', 'desc'],
-                data: [
-                    {value: 'STANDARD', desc: 'Standaard: door vervoerder bepaald'},
-                    {value: 'FORCED', desc: 'Automatisch: altijd melding'},
-                    {value: 'MANUAL', desc: 'Handmatig: handmatig door chauffeur'}
-                ]
+                data: triggerTypes
             })
         }];
         if(editingUitmeldpunt) {

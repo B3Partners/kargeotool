@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g class="afsluitingssysteem">
+        <rect x="9" y="25" width="18" height="9" style="fill:rgb(51,51,51);"/>
+        <g transform="matrix(0.00123417,2.22222,-0.94712,0.000526008,31.7072,-28.1185)">
+            <path d="M18.51,18.18L18.51,24L14,14.5L18.51,5L18.51,10.82L23,10.82L23,18.18L18.51,18.18Z" style="fill:rgb(51,51,51);"/>
+        </g>
+    </g>
+</svg>

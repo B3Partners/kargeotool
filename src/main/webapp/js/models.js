@@ -536,7 +536,9 @@ Ext.define('RSEQ', {
                 town:this.getTown(),
                 type:this.getType(),
                 className: this.$className,
-                memo: this.getMemo()
+                validationErrors:this.getValidationErrors(),
+                memo: this.getMemo(),
+                readyForExport: this.getReadyForExport()
             }
         };
         if(onlyRSEQ){

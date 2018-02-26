@@ -37,6 +37,7 @@ Ext.define("CollapsibleWindow", {
     },
     window: null,
     DEFAULT_DOCKED_WIDTH: 200,
+    DEFAULT_DOCKED_HEIGHT: 50,
     STATE_VERSION: 1,
     constructor: function(config) {
         this.initConfig(config);
@@ -131,9 +132,9 @@ Ext.define("CollapsibleWindow", {
         }
     },
     dockWindow: function(window, windowPosition) {
-        var xPos = -1 * ((windowPosition * 10) + (windowPosition * this.DEFAULT_DOCKED_WIDTH));
-        var yPos = -46; // Header height is aprox 36px + some margin
-        var alignToPos = window.getAlignToXY("editorBody", "br", [xPos, yPos]);
+        var xPos = -20 + -1*this.DEFAULT_DOCKED_WIDTH;
+        var yPos = windowPosition * this.DEFAULT_DOCKED_HEIGHT;
+        var alignToPos = window.getAlignToXY("editorBody", "tr", [xPos, yPos]);
         window.animate({
             to: {
                 x: alignToPos[0],

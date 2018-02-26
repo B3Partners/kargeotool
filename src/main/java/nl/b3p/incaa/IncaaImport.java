@@ -157,24 +157,10 @@ public class IncaaImport {
             // Niet nodig, optioneel veld
         }
 
-
-        String triggerTypeKar = null;
-        switch (triggerType) {
-            case 0:
-            case 1:
-                triggerTypeKar = ActivationPointSignal.TRIGGER_FORCED;
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-                triggerTypeKar = ActivationPointSignal.TRIGGER_MANUAL;
-                break;
-            default:
-                throw new IllegalArgumentException("Triggertype not recognized: " + triggerType);
+        if(triggerType < 0 ||triggerType > 255){
+            throw new IllegalArgumentException("Triggertype not recognized: " + triggerType);
         }
+        
 
         // Alleen vehicletypes behorende bij de groep hulpdiensten: ptx is voor hulpdiensten
         List<VehicleType> vehicleTypes = em.createQuery("from VehicleType where groep = :h order by nummer")
@@ -186,7 +172,7 @@ public class IncaaImport {
         aps.setDistanceTillStopLine(distanceTillStopline);
         aps.setSignalGroupNumber(signalGroupNumber);
         aps.setKarCommandType(commandType);
-        aps.setTriggerType(triggerTypeKar);
+        aps.setTriggerType("" + triggerType);
         aps.setVehicleTypes(vehicleTypes);
 
         // Haal objecten op om aan elkaar te linken

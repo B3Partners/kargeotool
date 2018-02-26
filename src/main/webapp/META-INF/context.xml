@@ -9,14 +9,11 @@
   <!--Configure at which interval in minutes the carriers informer job should be run.
             Comment out this parameter or set to -1 to disable.-->
   <Parameter name="inform.carriers.schedule" override="false" value="0 28 * * * ?"/>
-
   <Parameter name="inform.admins.schedule" override="false" value="0 * * 1 * ?"/>
   <Parameter name="inform.admins.toAddress" override="false" value="meinetoonen@b3partners.nl"/>
   <Parameter name="inform.admins.fromAddress" override="false" value="support@b3partners.nl"/>
-  
   <Parameter name="inform.kv7checker.schedule" override="false" value="0 0 12 1/1 * ? *"/>
   <Parameter name="inform.kv7checker.toAddress1" override="false" value="meinetoonen@b3partners.nl"/>
   <Parameter name="inform.kv7checker.toAddress2" override="false" value="meine@b3partners.nl"/>
   <Parameter name="inform.kv7checker.fromAddress" override="false" value="support@b3partners.nl"/>
-
 </Context>

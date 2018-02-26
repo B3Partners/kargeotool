@@ -31,6 +31,7 @@
             var imgPath = "<c:url value="/images/"/>";
             var karTheme = {
                 crossing:                       imgPath + 'icons/vri.png',
+                crossing2:                       imgPath + 'icons/vri.svg',
                 crossing_attachment:            imgPath + 'icons/vri_attachment.png',
                 crossing_selected:              imgPath + 'icons/vri_selected.png',
                 crossing_selected_attachment:   imgPath + 'icons/vri_selected_attachment.png',

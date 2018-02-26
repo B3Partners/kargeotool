@@ -107,7 +107,23 @@ public class IncaaExport {
                         line += TAB;
                         line += map.getSignal().getKarCommandType();
                         line += TAB;
-                        line += "0";
+                        String triggerType = "0";
+                        switch (map.getSignal().getTriggerType()) {
+                            case "STANDARD":
+                                triggerType = "0";
+                                break;
+                            case "FORCED":
+                                triggerType = "1";
+                                break;
+                            case "MANUAL":
+                                triggerType = "2";
+                                break;
+                            default:
+                                // ga ervan uit dat het een incaa nummer is;
+                                triggerType = map.getSignal().getTriggerType();
+
+                        }
+                        line += triggerType;
                      /*   line += TAB;
                         line += map.getPoint().getLabel();
                         line += TAB;
