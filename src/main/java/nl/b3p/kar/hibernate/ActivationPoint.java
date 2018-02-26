@@ -53,6 +53,7 @@ import org.stripesstuff.stripersist.Stripersist;
         }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
+@Table(name="activation_point")
 public class ActivationPoint implements Comparable {
     
     /**
@@ -69,6 +70,7 @@ public class ActivationPoint implements Comparable {
      */
     @ManyToOne(optional=false)
     @XmlTransient
+    @JoinColumn(name="roadside_equipment")
     private RoadsideEquipment roadsideEquipment;
     
     /**

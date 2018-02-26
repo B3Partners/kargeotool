@@ -31,6 +31,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * @author Matthijs Laan
  */
 @Entity
+@Table(name="activation_point_signal")
 public class ActivationPointSignal {
     /**
      * Waarde voor het KAR commandtype voor een inmeldpunt bij een movement.
@@ -78,6 +79,7 @@ public class ActivationPointSignal {
     /**
      * Soort melding, zie ActivationPointSignal.COMMAND_ constantes.
      */
+    @Column(name="kar_command_type")
     private Integer karCommandType;
     
     /**
@@ -87,18 +89,24 @@ public class ActivationPointSignal {
      * of signalGroupNumber of virtualLocalLoopNumber anders is dient een nieuwe
      * movement aangemaakt te worden.
      */
-    @ManyToMany
+    @OneToMany
+    @JoinTable(
+        name="activation_point_signal_vehicle_types",
+        joinColumns = @JoinColumn(name = "activation_point_signal"),
+        inverseJoinColumns = @JoinColumn(name = "vehicle_types"))
     private List<VehicleType> vehicleTypes = new ArrayList();
     
     /**
      * Soort aanmelding, zie ActivationPointSignal.TRIGGER_ constantes.
      */
+    @Column(name="trigger_type")
     private String triggerType;
     
     /**
      * Afstand tot aan de stopstreep in meters, waarde voorbij stopstreep zijn 
      * negatief.
      */
+    @Column(name="distance_till_stop_line")
     private Integer distanceTillStopLine;
     
     /**
@@ -107,11 +115,13 @@ public class ActivationPointSignal {
      * (Edisonlaan in Apeldoorn) meerdere uitmeldpunten hebben voor andere 
      * signaalgroepen dan waarvoor werd ingemeld.
      */
+    @Column(name="signal_group_number")
     private Integer signalGroupNumber;
     
     /**
      * Het virtuele lusnummer.
      */
+    @Column(name="virtual_local_loop_number")
     private Integer virtualLocalLoopNumber;
     
     private String direction;

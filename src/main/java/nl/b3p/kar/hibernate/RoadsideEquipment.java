@@ -198,7 +198,6 @@ public class RoadsideEquipment implements Comparable<RoadsideEquipment> {
     @OneToMany(orphanRemoval=true,cascade=CascadeType.ALL, mappedBy="roadsideEquipment")
     @XmlElement(name="ACTIVATIONPOINT")
     @Sort(type=SortType.NATURAL)
-    @Transient
     private SortedSet<ActivationPoint> points = new TreeSet<ActivationPoint>();
 
     @Column(length=4096)

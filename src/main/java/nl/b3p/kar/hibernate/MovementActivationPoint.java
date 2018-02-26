@@ -30,6 +30,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * @author Matthijs Laan
  */
 @Entity
+@Table(name="movement_activation_point")
 public class MovementActivationPoint {
 
     /**
@@ -74,18 +75,20 @@ public class MovementActivationPoint {
      */
     @ManyToOne
     @Basic(optional=false)
-    @JoinColumn(nullable=false)
+    @JoinColumn(name="point",nullable=false)
     private ActivationPoint point;
     
     /**
      * Geeft aan of dit een beginpunt, eindpunt of meldpunt is.
      */
+    @Column(name = "begin_end_or_activation")
     private String beginEndOrActivation;
     
     /**
      * Verplicht indien dit punt een meldpunt is, bevat de o.a. signaalgroep.
      */
     @OneToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="signal")
     private ActivationPointSignal signal;
 
 

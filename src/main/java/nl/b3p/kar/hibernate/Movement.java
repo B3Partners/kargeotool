@@ -67,6 +67,7 @@ public class Movement implements Comparable<Movement> {
      * Roadside equipment waarbij deze movement hoort.
      */
     @ManyToOne(optional = false)
+    @JoinColumn(name = "roadside_equipment")
     @XmlTransient
     private RoadsideEquipment roadsideEquipment;
     
@@ -82,7 +83,7 @@ public class Movement implements Comparable<Movement> {
      */
     @ManyToMany(cascade = CascadeType.ALL) // Actually @OneToMany, workaround for HHH-1268    
     @JoinTable(name = "movement_points", inverseJoinColumns =
-            @JoinColumn(name = "point"))
+            @JoinColumn(name = "point"), joinColumns = @JoinColumn(name="movement"))
     @OrderColumn(name = "list_index")
     @org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN) // cannot use orphanRemoval=true due to workaround
     @XmlTransient
@@ -101,6 +102,7 @@ public class Movement implements Comparable<Movement> {
     private XmlActivationPoint end;
     
     @XmlTransient
+    @Column(name="vehicle_type")
     private String vehicleType;
     
     public void beforeMarshal(Marshaller marshaller) {
