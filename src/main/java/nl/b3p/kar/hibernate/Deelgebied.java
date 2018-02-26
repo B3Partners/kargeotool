@@ -19,12 +19,12 @@
 package nl.b3p.kar.hibernate;
 
 import com.vividsolutions.jts.geom.GeometryCollection;
-import com.vividsolutions.jts.geom.MultiPolygon;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -46,11 +46,11 @@ public class Deelgebied {
     private String name;
     
     @Basic(optional=false)
-    //@org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
     private GeometryCollection geom;
     
     
     @ManyToOne(optional=false) 
+    @JoinColumn(name="gebruiker")
     private Gebruiker gebruiker;
 
     public Integer getId() {

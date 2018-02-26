@@ -23,6 +23,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -37,9 +38,11 @@ public class GebruikerVRIRights  implements Serializable{
     private Long id;
     
     @ManyToOne
+    @JoinColumn(name="gebruiker")
     private Gebruiker gebruiker;
     
     @ManyToOne
+    @JoinColumn(name="roadside_equipment")
     private RoadsideEquipment roadsideEquipment;
     
     private boolean readable;

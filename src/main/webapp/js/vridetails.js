@@ -31,7 +31,7 @@ function rseqFrame (){
     var me = this;
     Ext.create('Ext.form.Panel',{
         title : 'Bewerken ' + me.rseqType[rseq.type] + (rseq.karAddress == null ? "" : " met KAR adres " + rseq.karAddress),
-        height : 320,
+        height : 420,
         width : 450,
         renderTo : 'rseq',
         icon : rseq.type == "" ? karTheme.crossing : karTheme[rseq.type.toLowerCase()],
@@ -166,7 +166,7 @@ function rseqFrame (){
                 draggable : false
             }
         ],
-        height : 300,
+        height : 420,
         width : 400,
         renderTo : 'rseqRights',
         dockedItems : [{

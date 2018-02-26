@@ -118,9 +118,7 @@ public class RoadsideEquipment implements Comparable<RoadsideEquipment> {
     @XmlJavaTypeAdapter(DataOwner.class)
     private DataOwner dataOwner;
 
-    //@org.hibernate.annotations.Type(type="org.hibernatespatial.GeometryUserType")
     @XmlTransient
-    //@Column(columnDefinition="jts_geometry")
     private Point location;
 
     /**
@@ -664,6 +662,9 @@ public class RoadsideEquipment implements Comparable<RoadsideEquipment> {
 
             JSONArray mns = new JSONArray();
             List<MovementActivationPoint> maps = mapsByAp2.get(ap2);
+            if(maps == null){
+                continue;
+            }
             for (MovementActivationPoint map : maps) {
                 mns.put(map.getMovement().getNummer());
             }

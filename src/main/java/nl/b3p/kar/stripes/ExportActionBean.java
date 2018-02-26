@@ -384,7 +384,7 @@ public class ExportActionBean implements ActionBean, ValidationErrorHandler {
         String label = "";
         if(map.getSignal() != null){
             String direction = map.getSignal().getDirection();
-            if(direction == null){
+            if(direction == null || direction.isEmpty()){
                 return label;
             }
             String[] dirs = direction.split(",");

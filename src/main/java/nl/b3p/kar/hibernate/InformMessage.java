@@ -19,11 +19,14 @@
 package nl.b3p.kar.hibernate;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,6 +35,7 @@ import javax.persistence.TemporalType;
  * @author Meine Toonen
  */
 @Entity
+@Table(name="inform_message")
 public class InformMessage {
 
     @Id
@@ -39,25 +43,33 @@ public class InformMessage {
     private Integer id;
 
     @ManyToOne(optional=false)
+    @JoinColumn(name="vervoerder")
     private Gebruiker vervoerder;
 
     @ManyToOne(optional=false)
+    @JoinColumn(name="afzender")
     private Gebruiker afzender;
 
     @ManyToOne(optional=false)
+    @JoinColumn(name="rseq")
     private RoadsideEquipment rseq;
 
+    @Column(name="mail_sent")
     private boolean mailSent = false;
 
+    @Column(name="mail_processed")
     private boolean mailProcessed = false;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="created_at")
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="sent_at")
     private Date sentAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="processed_at")
     private Date processedAt;
 
 

@@ -23,6 +23,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,16 +55,19 @@ public class Upload {
     
     private String description;
     
-    @ManyToOne(optional=false) 
+    @ManyToOne(optional=false)
+    @JoinColumn(name="rseq")
     private RoadsideEquipment rseq;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date uploaddate;
         
     @ManyToOne(optional=false) 
+    @JoinColumn(name="data_owner")
     private DataOwner dataOwner;
    
-    @ManyToOne(optional=false) 
+    @ManyToOne(optional=false)
+    @JoinColumn(name="user_")
     private Gebruiker user_;
 
     public Integer getId() {
