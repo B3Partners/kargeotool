@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/kar">
+  <ResourceLink global="jdbc/kargeotool" name="jdbc/kargeotool" type="javax.sql.DataSource"/>
   <ResourceLink global="jdbc/kv7netwerk" name="jdbc/kv7netwerk" type="javax.sql.DataSource"/>
   <ResourceLink global="mail/session" name="mail/session" type="javax.mail.Session"/>
   <Parameter name="mapserver-url" override="false" value="http://localhost/cgi-bin/mapserv?map=/mnt/data/maps/kar/kv7netwerk.map"/>

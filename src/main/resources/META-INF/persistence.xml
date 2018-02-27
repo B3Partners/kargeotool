@@ -5,16 +5,8 @@
 
     <persistence-unit name="karGisPU" transaction-type="RESOURCE_LOCAL">
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/geo_ov" />
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="hibernate.connection.username" value="geo_ov"/>
-            <property name="hibernate.connection.password" value="geo_ov"/>
-            <property name="hibernate.default_schema" value="data"/>
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
             <property name="hibernate.dialect"  value="org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
-	    <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> DB Dialect -->
-            <!--property name="hibernate.dialect" value="org.hibernatespatial.postgis.PostgisDialect"/-->
-            <!--property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/-->
+            <property name="hibernate.connection.datasource" value="java:comp/env/jdbc/kargeotool"/>
         </properties>
     </persistence-unit>
 </persistence>

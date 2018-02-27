@@ -238,12 +238,11 @@ public class UploadDXFActionBean implements ActionBean {
                 saveFeatures(dataStore2Read, dataStore2Write, "dxf_features", typeName, uploadId);
             }
         } catch (Exception ex) {
-            log.info(ex.getLocalizedMessage());
+            log.error(ex.getLocalizedMessage());
         }
     }
 
     private void saveFeatures(DataStore source, DataStore dest, String destFeatureType, String sourceFeatureType, Integer uploadId) throws IOException, Exception {
-        // Generate the shapefile
         SimpleFeatureSource sfs = source.getFeatureSource(sourceFeatureType);
         SimpleFeatureType sft = (SimpleFeatureType) sfs.getSchema();
         SimpleFeatureCollection sourceFc = sfs.getFeatures();
@@ -301,27 +300,12 @@ public class UploadDXFActionBean implements ActionBean {
     }
 
     private static DataStore createDbDatastore() throws IOException {
-        EntityManager em = Stripersist.getEntityManager();
-        Map<String, Object> props = em.getEntityManagerFactory().getProperties();
-        String url = (String) props.get("hibernate.connection.url");
-        String host = url.substring(url.indexOf("://") + 3, url.lastIndexOf(":"));
-        String port = url.substring(url.lastIndexOf(":") + 1, url.lastIndexOf("/"));
-        String database = url.substring(url.lastIndexOf("/") + 1);
-        String schema = (String) props.get("hibernate.default_schema");
-        String user = (String) props.get("hibernate.connection.username");
-        String password = (String) props.get("hibernate.connection.password");
+        Map map = new HashMap();
+        map.put("dbtype", "postgis");
+        map.put("jndiReferenceName", "java:comp/env/jdbc/kargeotool");
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("dbtype", "postgis");
-        params.put("host", host);
-        params.put("port", port);
-        params.put("schema", schema);
-        params.put("database", database);
-        params.put("user", user);
-        params.put("passwd", password);
-
-        DataStore dataStore = DataStoreFinder.getDataStore(params);
-        return dataStore;
+        DataStore store = DataStoreFinder.getDataStore(map);
+        return store;
     }
 
     
