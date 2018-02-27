@@ -297,7 +297,7 @@ Ext.define("ContextMenu", {
                                     this.editor.selectExistingUitmeldpunt(this.selectedMovement);
                                     break;
                                 case 'uploadDxf':
-                                    var url = dxfActionBeanUrl + "?rseq=" + this.editor.activeRseq.getId();
+                                    var url = dxfActionBeanUrl + "&rseq=" + this.editor.activeRseq.getId();
                                     document.location.href = url;
                                     break;
                                 case 'addUitmeldpuntCoordinates':

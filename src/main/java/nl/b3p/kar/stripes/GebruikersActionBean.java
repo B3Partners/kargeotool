@@ -73,7 +73,7 @@ public class GebruikersActionBean implements ActionBean, ValidationErrorHandler 
     @ValidateNestedProperties({
         @Validate(field="username", required=true, maxlength=30, on="save"),
         @Validate(field="fullname", maxlength=50),
-        @Validate(field="email", required=true, converter=EmailTypeConverter.class, maxlength=50),
+        @Validate(field="email", required=true, converter=EmailTypeConverter.class, maxlength=50, on="save"),
         @Validate(field="phone", maxlength=15)
     })
     private Gebruiker gebruiker;
