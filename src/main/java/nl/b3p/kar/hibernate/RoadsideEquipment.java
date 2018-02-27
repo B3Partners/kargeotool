@@ -1083,11 +1083,29 @@ public class RoadsideEquipment implements Comparable<RoadsideEquipment> {
                                 errors.add(new KV9ValidationError(false, "F139", sXmlContext + "/triggertype", sContext + ", triggersoort van melding", null, "Afwezig"));
                                 s.setTriggerType(ActivationPointSignal.TRIGGER_STANDARD);
                             } else {
-                                if(!ActivationPointSignal.TRIGGER_FORCED.equals(s.getTriggerType())
-                                && !ActivationPointSignal.TRIGGER_MANUAL.equals(s.getTriggerType())
-                                && !ActivationPointSignal.TRIGGER_STANDARD.equals(s.getTriggerType())) {
-                                    errors.add(new KV9ValidationError(false, "F140", sXmlContext + "/triggertype", sContext + ", triggersoort van melding", s.getTriggerType() + "", "Ongeldig (niet 'STANDARD', 'FORCED' of 'MANUAL')"));
-                                    s.setTriggerType(ActivationPointSignal.TRIGGER_STANDARD);
+                                if(m.getVehicleType().equals(VehicleType.VEHICLE_TYPE_HULPDIENSTEN)){
+                                    String tt = s.getTriggerType();
+                                    if( StringUtils.isNumeric(tt)){
+                                        Integer t = Integer.parseInt(tt);
+                                        if(t < 0 || t > 255){
+                                            errors.add(new KV9ValidationError(false, "F140", sXmlContext + "/triggertype", sContext + ", triggersoort van melding", s.getTriggerType() + "", "Ongeldig voor hulpdiensten (< 0 of > 255)"));
+                                            s.setTriggerType(ActivationPointSignal.TRIGGER_STANDARD);
+                                        }
+                                    } else {
+                                        if (!ActivationPointSignal.TRIGGER_FORCED.equals(s.getTriggerType())
+                                                && !ActivationPointSignal.TRIGGER_MANUAL.equals(s.getTriggerType())
+                                                && !ActivationPointSignal.TRIGGER_STANDARD.equals(s.getTriggerType())) {
+                                            errors.add(new KV9ValidationError(false, "F140", sXmlContext + "/triggertype", sContext + ", triggersoort van melding", s.getTriggerType() + "", "Ongeldig (niet 'STANDARD', 'FORCED' of 'MANUAL')"));
+                                            s.setTriggerType(ActivationPointSignal.TRIGGER_STANDARD);
+                                        }
+                                    }
+                                } else {
+                                    if (!ActivationPointSignal.TRIGGER_FORCED.equals(s.getTriggerType())
+                                            && !ActivationPointSignal.TRIGGER_MANUAL.equals(s.getTriggerType())
+                                            && !ActivationPointSignal.TRIGGER_STANDARD.equals(s.getTriggerType())) {
+                                        errors.add(new KV9ValidationError(false, "F140", sXmlContext + "/triggertype", sContext + ", triggersoort van melding", s.getTriggerType() + "", "Ongeldig (niet 'STANDARD', 'FORCED' of 'MANUAL')"));
+                                        s.setTriggerType(ActivationPointSignal.TRIGGER_STANDARD);
+                                    }
                                 }
                             }
 
