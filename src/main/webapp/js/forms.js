@@ -305,7 +305,7 @@ Ext.define("EditForms", {
             this.karAttributesEditWindow.destroy();
             this.karAttributesEditWindow = null;
         }
-
+        var me = this;
         this.karAttributesEditWindow = Ext.create(KarAttributesEditWindow,
             "Bewerken KAR attributen voor " + this.rseqType[rseq.getType()] +
                 (rseq.config.karAddress === null ? "" : " met KAR adres " + rseq.config.karAddress),
@@ -315,7 +315,10 @@ Ext.define("EditForms", {
                 "(voorinmeldpunt, inmeldpunt en uitmeldpunt).",
             rseq.config.attributes,
             function(atts) {
-                rseq.config.attributes = atts;
+                rseq.setAttributes(atts);
+                var button = Ext.getCmp("rseqOkButton");
+                button.setDisabled(false);
+                me.editor.changeManager.changeOccured();
             }
         );
 
