@@ -59,7 +59,7 @@
         <dependency>
             <groupId>nl.b3p</groupId>
             <artifactId>b3p-commons-core</artifactId>
-            <version>5.0.3</version>
+            <version>5.0.5</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.persistence</groupId>
