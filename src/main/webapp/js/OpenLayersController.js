@@ -295,12 +295,16 @@ Ext.define("ol", {
         this.map.addControl(this.line);
         this.map.addControl(this.dragFeature);
         //maak en voeg achtergrond kaartlaag toe.
-        var ovmLayer = new OpenLayers.Layer.TMS('BRTOverviewLayer', 'http://geodata.nationaalgeoregister.nl/tiles/service/tms/',{
-            layername:'brtachtergrondkaart',
-            type: 'png8',
-            isBaseLayer:true,
+        const ovmLayer = new OpenLayers.Layer.WMTS({
+            name: 'BRTOverviewLayer',
+            url: 'https://geodata.nationaalgeoregister.nl/tiles/service/wmts/',
+            matrixSet: 'EPSG:28992',
+            layer: 'brtachtergrondkaart',
+            format: 'image/png',
+            style: 'default',
             serverResolutions: [3440.64,1720.32,860.16,430.08,215.04,107.52,53.76],
-            tileOrigin:new OpenLayers.LonLat(-285401.920000,22598.080000)
+            maxExtent: new OpenLayers.Bounds(-285401.920, 22598.080, 595401.920, 903401.920),
+            projection: new OpenLayers.Projection("EPSG:28992"),
         });
         var maxBounds = new OpenLayers.Bounds(12000,304000,280000,620000);
         //Maak een overview kaart.
@@ -514,6 +518,18 @@ Ext.define("ol", {
                 isBaseLayer:false,
                 serverResolutions: [3440.64,1720.32,860.16,430.08,215.04,107.52,53.76,26.88,13.44,6.72,3.36,1.68,0.84,0.42,0.21],
                 tileOrigin:new OpenLayers.LonLat(-285401.920000,22598.080000),
+                opacity: opacity
+            });
+        } else if (type === 'WMTS') {
+            layer = new OpenLayers.Layer.WMTS({
+                name,
+                url,
+                matrixSet: layers.split('/')[0],
+                layer: layers.split('/')[1],
+                format: extension,
+                style: "default",
+                serverResolutions: [3440.64,1720.32,860.16,430.08,215.04,107.52,53.76,26.88,13.44,6.72,3.36,1.68,0.84,0.42,0.21],
+                maxExtent: new OpenLayers.Bounds(-285401.920, 22598.080, 595401.920, 903401.920),
                 opacity: opacity
             });
         }else{

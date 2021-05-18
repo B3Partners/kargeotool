@@ -142,10 +142,9 @@ Ext.define("Editor", {
         this.olc = new ol(this);
         this.olc.createMap(this.domId);
 
-    
-        this.olc.addLayer("TMS","Luchtfoto",'https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/tms/','Actueel_ortho25/EPSG:28992', this.getLayerVisibility("Luchtfoto"),'jpeg', this.getLayerOpacity("Luchtfoto"));    // this.olc.addLayer("TMS","BRT",'http://geodata.nationaalgeoregister.nl/tiles/service/tms/','brtachtergrondkaart', this.getLayerVisibility("BRT"), 'png8', this.getLayerOpacity("BRT"));
+        this.olc.addLayer("WMTS","Luchtfoto",'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0', 'EPSG:28992/Actueel_ortho25', this.getLayerVisibility("Luchtfoto"), 'image/jpeg', this.getLayerOpacity("Luchtfoto"));
         this.olc.addLayer("TMS","Openbasiskaart",'https://openbasiskaart.nl/mapcache/tms/','osm-nb', this.getLayerVisibility("Openbasiskaart"), 'png', this.getLayerOpacity("Openbasiskaart"));
-        this.olc.addLayer("TMS","brtachtergrondkaart",'https://geodata.nationaalgeoregister.nl/tiles/service/tms/','brtachtergrondkaart', this.getLayerVisibility("brtachtergrondkaart"), 'png', this.getLayerOpacity("brtachtergrondkaart"));
+        this.olc.addLayer("WMTS","brtachtergrondkaart",'https://geodata.nationaalgeoregister.nl/tiles/service/wmts/','EPSG:28992/brtachtergrondkaart', this.getLayerVisibility("brtachtergrondkaart"), 'image/png', this.getLayerOpacity("brtachtergrondkaart"));
 
         this.olc.map.events.register("moveend", this, this.updateCenterInLocationHash);
     },

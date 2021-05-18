@@ -67,14 +67,15 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control,{
 });
 
 function loadMap (){
-    var brt = new OpenLayers.Layer.TMS('BRT','https://geodata.nationaalgeoregister.nl/tiles/service/tms/',{
-        layername : 'brtachtergrondkaart',
-        type : 'png8',
-        maxExtent : new OpenLayers.Bounds(-285401.920000,22598.080000,595401.920000,903401.920000),
-        projection : new OpenLayers.Projection("epsg:28992".toUpperCase()),
-        isBaseLayer : true,
-        serverResolutions : [3440.64,1720.32,860.16,430.08,215.04,107.52,53.76,26.88,13.44,6.72,3.36,1.68,0.84,0.42,0.21],
-        tileOrigin : new OpenLayers.LonLat(-285401.920000,22598.080000)
+    const brt = new OpenLayers.Layer.WMTS({
+        name: 'BRT',
+        url: 'https://geodata.nationaalgeoregister.nl/tiles/service/wmts/',
+        matrixSet: 'EPSG:28992',
+        layer: 'brtachtergrondkaart',
+        format: 'image/png',
+        style: 'default',
+        serverResolutions: [3440.64,1720.32,860.16,430.08,215.04,107.52,53.76,26.88,13.44,6.72,3.36,1.68,0.84,0.42,0.21],
+        maxExtent: new OpenLayers.Bounds(-285401.920, 22598.080, 595401.920, 903401.920),
     });
 
     var gemlayer = new OpenLayers.Layer.WMS("gemeente",mapfilePath,{
